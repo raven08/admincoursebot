@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1deb5ubuntu1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 20, 2023 at 08:32 AM
--- Server version: 8.0.33-0ubuntu0.22.04.2
--- PHP Version: 8.1.2-1ubuntu2.11
+-- Host: 127.0.0.1
+-- Generation Time: Feb 27, 2024 at 02:39 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tbl_chatbot_knowledge` (
-  `id_pattern` int NOT NULL,
+  `id_pattern` int(11) NOT NULL,
   `category` varchar(100) NOT NULL,
   `question` varchar(250) NOT NULL,
   `answer` varchar(250) NOT NULL,
   `created_at` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_chatbot_knowledge`
@@ -80,16 +80,16 @@ CREATE TABLE `tbl_history_chat` (
   `id_pattern` varchar(50) NOT NULL,
   `category` varchar(30) NOT NULL,
   `user_question` varchar(250) NOT NULL,
-  `chabot_answer` varchar(250) NOT NULL,
+  `chatbot_answer` varchar(250) NOT NULL,
   `decision_threshold` varchar(20) NOT NULL,
   `created_at` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_history_chat`
 --
 
-INSERT INTO `tbl_history_chat` (`email_user`, `id_pattern`, `category`, `user_question`, `chabot_answer`, `decision_threshold`, `created_at`) VALUES
+INSERT INTO `tbl_history_chat` (`email_user`, `id_pattern`, `category`, `user_question`, `chatbot_answer`, `decision_threshold`, `created_at`) VALUES
 ('folken@gmail.com', '7', 'filkom', 'Apa kepanjangan filkom?', 'Kepanjangan dari filkom adalah Fakultas Ilmu Komputer.', '100', '2023-05-18 09:44:32'),
 ('folken@gmail.com', '13', 'greetings', 'Selamat malam', 'Ya. Selamat malam juga.', '96.2962963', '2023-05-18 09:47:43'),
 ('jeremy@gmail.com', '1', 'kekuangan', 'Berapa harga satu SKS?', 'Harga satu SKS adalah Rp. 150000.', '100', '2023-05-18 09:57:44'),
@@ -112,12 +112,12 @@ INSERT INTO `tbl_history_chat` (`email_user`, `id_pattern`, `category`, `user_qu
 ('s954321@student.unklab.ac.id', '9', 'greetings', 'Selamat pagi', 'Ya, selamat pagi juga.', '96', '2023-05-19 04:12:43'),
 ('s954321@student.unklab.ac.id', '1', 'keuangan', 'Berapa harga uang laboratorium?', 'Ayo mendaftar di Universitas Klabat.', '64.1509434', '2023-05-19 04:12:59'),
 ('jeremy@gmail.com', '1', 'keuangan', 'berapa harga uang laboratorium ?', 'Tidak dapat dimengerti, mohon bertanya dengan singkat dan jelas.', '66.66666667', '2023-05-19 04:13:22'),
-('s954321@student.unklab.ac.id', '1', 'keuangan', 'Berapa harga uang laboratorium?', 'Maaf, saya tidak mengerti. Bisa diperjelas.', '64.1509434', '2023-05-19 04:14:43'),
+('s954321@student.unklab.ac.id', '1', 'keuangan', 'Berapa harga uang laboratorium?', 'Tidak dapat dimengerti, mohon bertanya dengan singkat dan jelas.', '64.1509434', '2023-05-19 04:14:43'),
 ('jeremy@gmail.com', '1', 'keuangan', 'berapa harga uang laboratorium ?', 'Ku coba untuk mengerti tapi tidak bisa.', '66.66666667', '2023-05-19 04:16:56'),
 ('s954321@student.unklab.ac.id', '1', 'keuangan', 'Berapa harga uang laboratorium?', 'Tidak dapat dimengerti, mohon bertanya dengan singkat dan jelas.', '64.1509434', '2023-05-19 04:17:13'),
 ('s954321@student.unklab.ac.id', '8', 'filkom', 'Siapa dekan fakultas ilmu komputer?', 'Dekan di fakultas ilmu komputer adalah Bpk. Andrew Liem.', '100', '2023-05-19 04:17:48'),
 ('jeremy@gmail.com', '8', 'filkom', 'Siapa dekan fakultas ilmu komputer', 'Dekan di fakultas ilmu komputer adalah Bpk. Andrew Liem.', '98.55072464', '2023-05-19 04:17:50'),
-('jeremy@gmail.com', '1', 'keuangan', 'berapa harga uang laboratorium ?', 'Maaf, saya tidak mengerti. Bisa diperjelas.', '66.66666667', '2023-05-19 04:21:08'),
+('jeremy@gmail.com', '1', 'keuangan', 'berapa harga uang laboratorium ?', 'Tidak dapat dimengerti, mohon bertanya dengan singkat dan jelas.', '66.66666667', '2023-05-19 04:21:08'),
 ('jeremy@gmail.com', '12', 'greetings', 'Uang asrama', 'Ku coba untuk mengerti tapi tidak bisa.', '46.15384615', '2023-05-19 04:23:08'),
 ('jeremy@gmail.com', '33', '--Choose Category--', 'Tanggal berapa ujian', 'Ada kalanya keyword tidak cocok, mohon diperjelas.', '43.07692308', '2023-05-19 04:23:24'),
 ('jeremy@gmail.com', '1', 'keuangan', 'Berapa harga satu sks', 'Harga satu SKS adalah Rp. 150000.', '97.6744186', '2023-05-19 04:23:56'),
@@ -127,11 +127,7 @@ INSERT INTO `tbl_history_chat` (`email_user`, `id_pattern`, `category`, `user_qu
 ('s954321@student.unklab.ac.id', '1', 'keuangan', 'Berapa harga uang laboratorium?', 'Ayo mendaftar di Universitas Klabat.', '64.1509434', '2023-05-19 04:29:00'),
 ('jeremy@gmail.com', '1', 'keuangan', 'berapa harga uang laboratorium ?', 'Mohon diperjelas pertanyaan anda.', '66.66666667', '2023-05-19 04:29:03'),
 ('s954321@student.unklab.ac.id', '1', 'keuangan', 'Berapa harga uang laboratorium?', 'Ada kalanya keyword tidak cocok, mohon diperjelas.', '64.1509434', '2023-05-19 04:29:19'),
-('jeremy@gmail.com', '8', 'filkom', 'Siapa dekan fakultas ilmu komputer?', 'Dekan di fakultas ilmu komputer adalah Bpk. Andrew Liem.', '100', '2023-05-19 04:31:17'),
-('jeremy@gmail.com', '12', 'greetings', 'Labor', 'Ayo mendaftar di Universitas Klabat.', '30', '2023-05-19 04:36:56'),
-('jeremy@gmail.com', '12', 'greetings', 'labor', 'Ada kalanya keyword tidak cocok, mohon diperjelas.', '30', '2023-05-19 04:37:11'),
-('jeremy@gmail.com', '7', 'filkom', 'Siapa dekan filkom', 'Mohon diperjelas pertanyaan anda.', '68.29268293', '2023-05-19 04:37:25'),
-('jeremy@gmail.com', '8', 'filkom', 'Siapa dekan fakultas ilmu komputer', 'Dekan di fakultas ilmu komputer adalah Bpk. Andrew Liem.', '98.55072464', '2023-05-19 04:37:40'),
+('jeremy@gmail.com', '8', 'filkom', 'Siapa dekan fakultas ilmu komputer?', 'Mohon diperjelas pertanyaan anda.', '68.29268293', '2023-05-19 04:37:25'),
 ('jeremy@gmail.com', '8', 'filkom', 'dimana gedung fakultas filkom', 'Kami mencoba mengerti dan menjadi yang terbaik.', '56.25', '2023-05-19 04:38:11'),
 ('s954321@student.unklab.ac.id', '17', 'keuangan', 'Dimana gedung fakultas filkom?', 'di gedung GA', '98.36065574', '2023-05-19 04:41:09'),
 ('jeremy@gmail.com', '17', 'keuangan', 'Dimana gedung fakultas ilmu komputer ?', 'di gedung GA', '84.05797101', '2023-05-19 04:43:06'),
@@ -157,6 +153,32 @@ INSERT INTO `tbl_history_chat` (`email_user`, `id_pattern`, `category`, `user_qu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_students`
+--
+
+CREATE TABLE `tbl_students` (
+  `fullname` varchar(255) NOT NULL,
+  `reg_num` varchar(20) NOT NULL,
+  `nim` varchar(15) NOT NULL,
+  `faculty` varchar(50) NOT NULL,
+  `prog_study` varchar(50) NOT NULL,
+  `curriculum_name` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_students`
+--
+
+INSERT INTO `tbl_students` (`fullname`, `reg_num`, `nim`, `faculty`, `prog_study`, `curriculum_name`, `email`, `password`, `created_at`) VALUES
+('Vicky Ravensky Pati Ani', 'S2200285', '105022010046', 'Fakultas Ilmu Komputer', 'Informatika', 'Informatika 2020-2024', 's2200285@student.unklab.ac.id', '12345', '2024-02-26 13:23:19'),
+('Ardita Estika Ruku', 's22110035', '103022110005', 'Fakultas Ekonomi dan Bisnis', 'Management', 'Management 2020', 's22110035@student.unklab.ac.id', '12345', '2024-02-26 13:27:48');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_user_mobile`
 --
 
@@ -166,17 +188,17 @@ CREATE TABLE `tbl_user_mobile` (
   `phonenumber` varchar(50) NOT NULL,
   `address` varchar(250) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `created_at` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_user_mobile`
 --
 
 INSERT INTO `tbl_user_mobile` (`user_name`, `email`, `phonenumber`, `address`, `password`, `created_at`) VALUES
-('Folken Mamarimbing', 'folken@gmail.com', '0984348583', 'Tomohon', '12345', '2023-4-5 11:29:43'),
+('Folken Mamarimbing', 'folken@gmail.com', '0984348583', 'Tomohon', '12345', '2023-04-05 11:29:43'),
 ('Jeremy Pongantung', 'jeremy@gmail.com', '081265357896', 'Kanaan Airmadidi', '12345', '2023-05-17 07:41:43'),
-('Semmy Wellem Taju', 'semmy@gmail.com', '0984348583', 'Unklab Aermadidi', '12345', '2023-4-5 11:29:43'),
+('Semmy Wellem Taju', 'semmy@gmail.com', '0984348583', 'Unklab Aermadidi', '12345', '2023-04-05 11:29:43'),
 ('Yehezkiel Wonte', 'Yehezkiel@gmail.com', '081265937598', 'Kanaan Unklab', '12345678', '2023-05-17 23:39:20');
 
 -- --------------------------------------------------------
@@ -186,13 +208,13 @@ INSERT INTO `tbl_user_mobile` (`user_name`, `email`, `phonenumber`, `address`, `
 --
 
 CREATE TABLE `users` (
-  `id` int NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `department` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` text COLLATE utf8mb4_general_ci NOT NULL,
-  `role` enum('Admin','Operator') COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `department` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` text NOT NULL,
+  `role` enum('Admin','Operator') DEFAULT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -200,10 +222,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `department`, `email`, `password`, `role`, `date_created`) VALUES
-(1, 'folken', 'Fakultas Ilmu Komputer', 'folken@gmail.com', 'admin12345', 'Operator', '2023-05-14 00:00:00'),
-(2, 'Jeremy Andrew Pongantung', 'Fakultas Ilmu Komputer', 'jeremy@gmail.com', 'admin12345', 'Operator', '2023-05-14 00:00:00'),
-(3, 'Yonatan Mamahit', 'Fakultas Ilmu Komputer', 'yonatan@gmail.com', 'admin12345', 'Admin', '2023-05-14 14:03:00'),
-(4, 'Folken Marcello', 'Fakultas Ilmu Komputer', 'folken@gmail.com', 'admin12345', 'Admin', '2023-05-17 04:18:12');
+(3, 'Vicky Pati Ani', 'Fakultas Ilmu Komputer', 'vickyravensky@gmail.com', '12345', 'Admin', '2024-02-26 21:26:46');
 
 --
 -- Indexes for dumped tables
@@ -216,10 +235,10 @@ ALTER TABLE `tbl_chatbot_knowledge`
   ADD PRIMARY KEY (`id_pattern`);
 
 --
--- Indexes for table `tbl_user_mobile`
+-- Indexes for table `tbl_students`
 --
-ALTER TABLE `tbl_user_mobile`
-  ADD PRIMARY KEY (`email`);
+ALTER TABLE `tbl_students`
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `users`
@@ -232,16 +251,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `tbl_chatbot_knowledge`
---
-ALTER TABLE `tbl_chatbot_knowledge`
-  MODIFY `id_pattern` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
