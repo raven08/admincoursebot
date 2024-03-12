@@ -69,14 +69,14 @@ includeLayouts();
                         <td><?php echo $row['email']; ?></td>
                         <td>
                             <form action="edit_student.php" method="POST" >
-                              <input type="hidden" name="edit_email" value="<?php echo $row['email']; ?>">
-                              <button type="submit" name="edit_btn" class="btn btn-success btn-sm"><i class="fas fa-edit nav-icon"></i>EDIT</button>
+                            <input type="hidden" name="edit_email" value="<?php echo $row['email']; ?>">
+                              <button type="submit" name="editbtn" class="btn btn-success btn-sm"><i class="fas fa-edit nav-icon"></i>EDIT</button>
                             </form>
                         </td>
                         <td>
-                            <form action="edit_code_students.php" method="POST">
-                            <input type="hidden" name="edit_reg_num" value="<?php echo $row['reg_num']; ?>">
-                              <button type="submit" name="delete_btn" class="btn btn-danger btn-sm"><i class="fas fa-trash nav-icon"></i>DELETE</button>
+                            <form action="edit_student.php" method="POST">
+                            <input type="hidden" name="delete_email" value="<?php echo $row['email']; ?>">
+                              <button type="submit" name="deletebtn" class="btn btn-danger btn-sm"><i class="fas fa-trash nav-icon"></i>DELETE</button>
                             </form>
                         </td>
                     <?php
@@ -87,7 +87,7 @@ includeLayouts();
                     }
                   ?>
                   <tbody>
-                  </tr>
+                </tr>
                 </table>
               </div>
             </div>

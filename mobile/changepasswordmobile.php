@@ -1,8 +1,8 @@
 <?php
 
 $host="localhost:3306";
-$user="phpmyadmin";
-$password="#Fm123456";
+$user="unklabcb";
+$password="Coursebot08";
 $database="db_admin";
 
 // Create connection
@@ -23,12 +23,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	  echo "ERROR";
 	
 	}else{
-		$sql = "SELECT * FROM tbl_user_mobile WHERE email='$email_user' AND password='$old_pass';";
+		$sql = "SELECT * FROM tbl_students WHERE email='$email_user' AND password='$old_pass';";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
 			// sql query
-			$sql = "UPDATE `tbl_user_mobile` SET `password`='$new_pass' WHERE `email`='$email_user' AND `password`='$old_pass';";
+			$sql = "UPDATE `tbl_students` SET `password`='$new_pass' WHERE `email`='$email_user' AND `password`='$old_pass';";
 
 			if ($conn->query($sql) === TRUE) {
 				echo "SUCCESS";

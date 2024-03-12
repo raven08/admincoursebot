@@ -8,8 +8,8 @@ if (isset($_POST['submit_knowledge'])) {
 
     // Melakukan koneksi ke database
     $host = "localhost:3306";
-    $user = "phpmyadmin";
-    $password = "#Fm123456";
+    $user = "unklabcb";
+    $password = "Coursebot08";
     $database = "db_admin";
 
     $conn = new mysqli($host, $user, $password, $database);

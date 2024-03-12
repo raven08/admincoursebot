@@ -54,14 +54,23 @@ includeLayouts();
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>53</h3>
+		<?php
+                  require '../config/db_connect.php';
 
+                  $query =  "SELECT id FROM tbl_curriculum ORDER BY id";
+                  $query_run = mysqli_query($connection, $query);
+
+                  $row = mysqli_num_rows($query_run);
+                  echo '<h3> '.$row.'</h1>';
+                ?>
+
+		
                 <p>Total kurikulum</p>
               </div>
               <div class="icon">
                 <i class="fas fa-clipboard"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="list_curriculum.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -84,7 +93,7 @@ includeLayouts();
               <div class="icon">
                 <i class="fa fa-users"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="list_student.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

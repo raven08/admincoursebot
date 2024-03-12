@@ -65,6 +65,7 @@ includeLayouts();
                         <select class="form-control selected2bs4" name="prog_study" style="width: 100%">
                             <option selected="selected">--Choose Program Study--</option>
                             <option>Informatika</option>
+			    <option>Sistem Informasi</option>
                             <option>Management</option>
                         </select>
                     </div>
@@ -81,6 +82,7 @@ includeLayouts();
                         <select class="form-control selected2bs4" name="curriculum_name" style="width: 100%">
                             <option selected="selected">--Choose Curriculum--</option>
                             <option>Informatika 2020-2024</option>
+			    <option>Sistem Informasi 2020-2024</option>
                             <option>Management 2020</option>
                         </select>
                     </div>
@@ -95,9 +97,9 @@ includeLayouts();
 
     <?php
     // Pastikan untuk mengganti informasi koneksi database sesuai dengan database Anda.
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
+    $servername = "localhost:3306";
+    $username = "unklabcb";
+    $password = "Coursebot08";
     $dbname = "db_admin";
 
     // Membuat koneksi

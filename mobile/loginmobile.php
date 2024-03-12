@@ -1,8 +1,8 @@
 <?php
 
 $host="localhost:3306";
-$user="phpmyadmin";
-$password="#Fm123456";
+$user="unklabcb";
+$password="Coursebot08";
 $database="db_admin";
 
 // Create connection
@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$email = $_POST['input-email'];
 	$password = $_POST['input-password'];
 	
-	//$email = 'semmy@gmail.com';
+	//$email = 's2200285@student.unklab.ac.id';
 	//$password = '12345';
 	
 	// Check connection
@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	  echo "ERROR";
 	
 	}else{
-		$sql = "SELECT * FROM tbl_user_mobile WHERE email='$email' AND password='$password';";
+		$sql = "SELECT * FROM tbl_students WHERE email='$email' AND password='$password';";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {

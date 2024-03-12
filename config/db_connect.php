@@ -1,8 +1,8 @@
 <?php
 
-$host       = "localhost";
-$user       = "root";
-$password       = "";
+$host       = "localhost:3306";
+$user       = "unklabcb";
+$password       = "Coursebot08";
 $database="db_admin";
 
 $connection=mysqli_connect($host,$user,$password,$database);

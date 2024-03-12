@@ -1,6 +1,6 @@
 <?php
 
-$connection = mysqli_connect("localhost","root","","db_admin");
+$connection = mysqli_connect("localhost:3306","unklabcb","Coursebot08","db_admin");
 
 if(isset($_POST['updatebtn']))
 {

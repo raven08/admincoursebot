@@ -1,51 +1,91 @@
+<input type="hidden" name="edit_email" value="<?php echo $row['email']; ?>"><?php
+
+require_once '../pages/layout.php';
+includeLayouts();
+
+?>
 <?php
+require '../config/db_connect.php';
 
-$connection = mysqli_connect("localhost","root","","db_admin");
-
-if(isset($_POST['btnupdate']))
+// Fetch data for editing
+if(isset($_POST['editbtn']))
 {
-        $fullname = $_POST['edit_fullname'];
-        $reg_num = $_POST['edit_reg_num'];
-        $nim = $_POST['edit_nim'];
-        $faculty = $_POST['edit_faculty'];
-        $prog_study = $_POST['edit_prog_study'];
-        $curriculum_name = $_POST['edit_curriculum_name'];
-        $email = $_POST['edit_email'];
-        $password = $_POST['edit_password'];
-    
+    $email = $_POST['edit_email'];
+    $query = "SELECT * FROM tbl_students WHERE email='$email'";
+    $query_run = mysqli_query($connection, $query);
 
-    $query ="UPDATE tbl_students set name='$fullname', email='$email', reg_num='$reg_num', nim='$nim',faculty='$faculty', password='$password', curriculum_name = '$curriculum_name',prog_study='$prog_study' WHERE email='$email' ";
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        $row = mysqli_fetch_assoc($query_run);
+    }
+    else
+    {
+        echo "No Record Found!";
+    }
+}
+
+// Update data in the database
+if(isset($_POST['updatebtn']))
+{
+    $email = $_POST['edit_email'];
+    $fullname = $_POST['fullname'];
+    $registration_number = $_POST['registration_number'];
+    // Add other fields based on your database columns
+
+    $query = "UPDATE tbl_students SET fullname='$fullname', reg_num='$registration_number' WHERE email='$email'";
     $query_run = mysqli_query($connection, $query);
 
     if($query_run)
     {
-        $_SESSION['success'] = "Your Data is Updated";
+        echo '<script>alert("Data Updated Successfully");</script>';
         header('Location: list_student.php');
     }
     else
     {
-        $_SESSION['status'] = "Your Data is NOT Updated";
-        header('Location: list_student.php');
+        echo '<script>alert("Error Updating Data");</script>';
     }
 }
 
-if(isset($_POST['delete_btn']))
+// Delete data from the database
+if(isset($_POST['deletebtn']))
 {
     $email = $_POST['delete_email'];
 
-    $query = "DELETE FROM tbl_students WHERE email='$email' ";
+    $query = "DELETE FROM tbl_students WHERE email='$email'";
     $query_run = mysqli_query($connection, $query);
 
     if($query_run)
     {
-        $_SESSION['success'] = "Your Data is DELETED";
+        echo '<script>alert("Data Deleted Successfully");</script>';
         header('Location: list_student.php');
     }
     else
     {
-        $_SESSION['status'] = "Your Data is NOT DELETED";
-        header('Location: list_student.php');
+        echo '<script>alert("Error Deleting Data");</script>';
     }
 }
+?>
 
+<!-- HTML form for editing data -->
+<form action="" method="POST">
+    <div class="form-group">
+        <label for="fullname">Full Name:</label>
+        <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $row['fullname']; ?>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="registration_number">Registration Number:</label>
+        <input type="text" class="form-control" id="registration_number" name="registration_number" value="<?php echo $row['reg_num']; ?>" required>
+    </div>
+
+    <!-- Add other form fields as needed, based on your database columns -->
+
+    <input type="hidden" name="edit_email" value="<?php echo $row['email']; ?>">
+    <button type="submit" name="updatebtn" class="btn btn-primary">Update</button>
+</form>
+
+<!-- Your existing PHP code for update and delete -->
+
+<?php
+    // ...
 ?>

@@ -38,14 +38,13 @@ includeLayouts();
                     $no = 1;
                   ?>
                   <tr>
-					<th style="text-align: center;">No</th>
+					          <th style="text-align: center;">No</th>
                     <th style="text-align: center;">User</th>
                     <th style="text-align: center;">Category</th>
                    	<th style="text-align: center;">Question</th>
                     <th style="text-align: center;">Answer</th>
-					<th style="text-align: center;">Threshold</th>
+					          <th style="text-align: center;">Threshold</th>
                     <th style="text-align: center;">Date</th>
-					<th style="text-align: center;">Delete</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -61,32 +60,9 @@ includeLayouts();
                         <td><?php echo $row['category']; ?></td>
                         <td><?php echo $row['user_question']; ?></td>
                         <td><?php echo $row['chatbot_answer']; ?></td>
-						<td><?php echo number_format($row['decision_threshold'], 2) . '%'; ?></td>
-						<td><?php echo $row['created_at']; ?></td>
-						<td style="text-align: center;">
-                             <form method="POST" action="../pages/history_delete.php">
-							  <input type="hidden" name="email" value="<?php echo $row['email_user']; ?>">
-							  <button type="button" name="delete_history" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-trash nav-icon"></i></button>
-							  
-							  <!-- Modal -->
-							  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-								  <div class="modal-content">
-									<div class="modal-header">
-									  <h5 class="modal-title" id="exampleModalLabel">History Question</h5>
-									  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">
-									  Do you want to delete this history?
-									</div>
-									<div class="modal-footer">
-									  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-									  <button type="submit" class="btn btn-danger">Yes</button>
-									</div>
-								  </div>
-								</div>
-							  </div>
-							</form>
+						            <td><?php echo number_format($row['decision_threshold'], 2) . '%'; ?></td>
+						            <td><?php echo $row['created_at']; ?></td>
+						            
 						</td>
                         <?php
                       }
